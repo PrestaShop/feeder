@@ -35,7 +35,7 @@ class Feeder extends Module
 	{
 		$this->name = 'feeder';
 		$this->tab = 'front_office_features';
-		$this->version = 0.5;
+		$this->version = '0.6';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		
@@ -44,7 +44,6 @@ class Feeder extends Module
 		
 		$this->displayName = $this->l('RSS products feed');
 		$this->description = $this->l('Generate a RSS feed for your latest products.');
-		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
 	}
 	
 	function install()
