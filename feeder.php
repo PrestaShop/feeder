@@ -72,7 +72,7 @@ class Feeder extends Module
 		$orderBy = Tools::getProductsOrder('by', Tools::getValue('orderby'));
 		$orderWay = Tools::getProductsOrder('way', Tools::getValue('orderway'));
 		$this->smarty->assign(array(
-			'feedUrl' => Tools::getShopDomain(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/rss.php?id_category='.$id_category.'&amp;orderby='.$orderBy.'&amp;orderway='.$orderWay,
+			'feedUrl' => Tools::getShopDomainSsl(true, true)._MODULE_DIR_.$this->name.'/rss.php?id_category='.$id_category.'&amp;orderby='.$orderBy.'&amp;orderway='.$orderWay,
 		));
 		return $this->display(__FILE__, 'feederHeader.tpl');
 	}
