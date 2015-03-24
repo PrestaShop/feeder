@@ -35,7 +35,7 @@ class Feeder extends Module
 	{
 		$this->name = 'feeder';
 		$this->tab = 'front_office_features';
-		$this->version = '0.7';
+		$this->version = '0.7.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		
