@@ -49,6 +49,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 		<title><![CDATA[<?php echo Configuration::get('PS_SHOP_NAME') ?>]]></title>
 		<description><![CDATA[<?php echo $metas['description'] ?>]]></description>
 		<link><?php echo $shop_uri ?></link>
+		<generator>PrestaShop</generator>
 		<webMaster><?php echo Configuration::get('PS_SHOP_EMAIL') ?></webMaster>
 		<language><?php echo $context->language->iso_code; ?></language>
 		<image>
