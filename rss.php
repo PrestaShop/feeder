@@ -34,10 +34,11 @@ $number = ((int)(Tools::getValue('n')) ? (int)(Tools::getValue('n')) : 10);
 $orderBy = Tools::getProductsOrder('by', Tools::getValue('orderby'));
 $orderWay = Tools::getProductsOrder('way', Tools::getValue('orderway'));
 $id_category = ((int)(Tools::getValue('id_category')) ? (int)(Tools::getValue('id_category')) : Configuration::get('PS_HOME_CATEGORY'));
-$products = Product::getProducts((int)Context::getContext()->language->id, 0, ($number > 10 ? 10 : $number), $orderBy, $orderWay, $id_category, true);
-$currency = new Currency((int)Context::getContext()->currency->id);
+$products = Product::getProducts((int)$context->language->id, 0, ($number > 10 ? 10 : $number), $orderBy, $orderWay, $id_category, true);
+$currency = new Currency((int)$context->currency->id);
 $affiliate = (Tools::getValue('ac') ? '?ac='.(int)(Tools::getValue('ac')) : '');
-$metas = Meta::getMetaByPage('index', (int)Context::getContext()->language->id);
+$metas = Meta::getMetaByPage('index', (int)$context->language->id);
+$shop_uri = Tools::getShopDomainSsl(true, true).__PS_BASE_URI__;
 
 // Send feed
 header("Content-Type:text/xml; charset=utf-8");
@@ -47,14 +48,14 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 	<channel>
 		<title><![CDATA[<?php echo Configuration::get('PS_SHOP_NAME') ?>]]></title>
 		<description><![CDATA[<?php echo $metas['description'] ?>]]></description>
-		<link><?php echo _PS_BASE_URL_.__PS_BASE_URI__; ?></link>
-		<webMaster><?php echo Configuration::get('PS_SHOP_EMAIL') ?></webMaster>
+		<link><?php echo $shop_uri ?></link>
 		<generator>PrestaShop</generator>
-		<language><?php echo Context::getContext()->language->iso_code; ?></language>
+		<webMaster><?php echo Configuration::get('PS_SHOP_EMAIL') ?></webMaster>
+		<language><?php echo $context->language->iso_code; ?></language>
 		<image>
 			<title><![CDATA[<?php echo Configuration::get('PS_SHOP_NAME') ?>]]></title>
-			<url><?php echo _PS_BASE_URL_.__PS_BASE_URI__.'img/logo.jpg'; ?></url>
-			<link><?php echo _PS_BASE_URL_.__PS_BASE_URI__; ?></link>
+			<url><?php echo $link->getMediaLink(_PS_IMG_.Configuration::get('PS_LOGO')) ?></url>
+			<link><?php echo $shop_uri ?></link>
 		</image>
 <?php
 	foreach ($products AS $product)
